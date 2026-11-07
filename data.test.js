@@ -44,3 +44,14 @@ test('tier changes alter actual drafts and execution, while adoption overrides e
  assert.ok(!tier3[0].content.includes(accounts[6].signal));assert.ok(sequenceTouches({...accounts[6],tier:2})[0].content.includes(accounts[6].signal));
  const lowAdoption=accounts[5];assert.match(sequenceApproach(lowAdoption).label,/Adoption first/);assert.ok(sequenceTouches(lowAdoption).every(t=>t.execution==='Account-team review required'&&t.content.includes('not a proposal to buy')));
 });
+
+test('date-filtered cohorts reconcile totals and suggestions respect the selected data',async()=>{
+ const {performanceCohorts,filteredPerformance,testingSuggestion}=await import('./data.js');
+ assert.deepEqual(aggregate(filteredPerformance()),aggregate(results));
+ for(const r of performanceCohorts)assert.ok(r.contacted>=r.delivered&&r.delivered>=r.opens&&r.opens>=r.replies&&r.replies>=r.meetings&&r.meetings>=r.opps);
+ const august=filteredPerformance({start:'2026-08-01',end:'2026-08-31'});assert.ok(aggregate(august).contacted<aggregate(results).contacted);
+ assert.equal(filteredPerformance({start:'2027-01-01'}).length,0);assert.equal(filteredPerformance({start:'2026-10-01',end:'2026-08-01'}).length,0);
+ const suggestion=testingSuggestion(filteredPerformance());assert.equal(suggestion.source.id,2);assert.equal(suggestion.target.id,3);assert.equal(suggestion.comparable,true);
+ assert.equal(testingSuggestion(filteredPerformance({account:6})),null);
+ assert.equal(accounts.filter(a=>a.acv>0).length,3);assert.equal(accounts.reduce((n,a)=>n+(a.acv||0),0),146000);
+});

@@ -61,3 +61,11 @@ The growth framework has two groups: existing customers (internal and external e
 **Account tiering** explains growth tiers, the 40/40/20 scoring model, signal strength, effort allocation, reassessment and separate adoption/retention priorities. The two-group signal framework is expanded by default on this page.
 
 **Book of business** contains the account overview, searchable/filterable account table, growth-tier explanations, adoption-priority flags and sequence links. Search and filters persist while switching between pages. The interview presentation continues to use Prioritise → Engage → Learn.
+
+## ACV, performance dates and testing suggestions
+
+Existing customers have a fictional current annual contract value (`acv`), distinct from incremental annual growth potential. Book of business shows both and totals current ACV separately.
+
+Performance filters select fictional contact cohorts by sequence enrolment date. August, September and October cohort records reconcile to the original all-time totals. Outcomes follow the selected cohort, rather than being filtered by the event dates of meetings or opportunities. Metrics, export and recommendation use the same filtered dataset.
+
+The AI-powered test-ideas panel is explicitly a local data-driven demonstration, not a live model. It ranks eligible sequences by opportunities per contact, prefers a same-tier/same-motion test context and excludes adoption-priority customers from expansion tests. Differences are hypotheses, not proof of message effectiveness. The action button creates an A/B plan with control and variant emails, randomisation guidance and evaluation measures; users can save it in local storage or download JSON. It does not launch a campaign, modify a sequence or send messages.

@@ -1,10 +1,10 @@
 export const accounts=[
-{id:1,name:'Evergreen Home',initials:'EH',industry:'Retail',motion:'Expand',tier:1,employees:84,potential:42000,signal:'Hired 5 support agents in 3 months',source:'Illustrative hiring + CRM data',age:5,confidence:'High',persona:'Head of Customer Experience',challenge:'Keep service consistent as the support team grows',outcome:'Reduce case handling time and protect customer satisfaction',product:'Service Cloud',color:'green'},
+{id:1,acv:68000,name:'Evergreen Home',initials:'EH',industry:'Retail',motion:'Expand',tier:1,employees:84,potential:42000,signal:'Hired 5 support agents in 3 months',source:'Illustrative hiring + CRM data',age:5,confidence:'High',persona:'Head of Customer Experience',challenge:'Keep service consistent as the support team grows',outcome:'Reduce case handling time and protect customer satisfaction',product:'Service Cloud',color:'green'},
 {id:2,name:'Orbit Analytics',initials:'OA',industry:'Technology',motion:'Acquire',tier:1,employees:62,potential:36000,signal:'Raised a Series A; hiring 8 account executives',source:'Illustrative funding + careers page',age:3,confidence:'High',persona:'VP of Sales',challenge:'Build a repeatable sales process before the new team ramps',outcome:'Improve ramp time and pipeline visibility',product:'Sales Cloud',color:'purple'},
 {id:3,name:'Coastal Collective',initials:'CC',industry:'Retail',motion:'Acquire',tier:1,employees:110,potential:48000,signal:'Opening 3 locations across Australia',source:'Illustrative company announcement',age:8,confidence:'Medium',persona:'Operations Director',challenge:'Keep customer information connected across new locations',outcome:'Give every location a consistent view of the customer',product:'Sales Cloud',color:'blue'},
-{id:4,name:'Forma Finance',initials:'FF',industry:'Financial services',motion:'Expand',tier:2,employees:48,potential:18000,signal:'Sales licences at 92% utilisation',source:'Illustrative CRM usage report',age:2,confidence:'High',persona:'Sales Director',challenge:'Understand adoption and capacity before adding seats',outcome:'Align licence capacity with a growing sales team',product:'Sales Cloud',color:'orange'},
+{id:4,acv:32000,name:'Forma Finance',initials:'FF',industry:'Financial services',motion:'Expand',tier:2,employees:48,potential:18000,signal:'Sales licences at 92% utilisation',source:'Illustrative CRM usage report',age:2,confidence:'High',persona:'Sales Director',challenge:'Understand adoption and capacity before adding seats',outcome:'Align licence capacity with a growing sales team',product:'Sales Cloud',color:'orange'},
 {id:5,name:'Northstar Digital',initials:'ND',industry:'Technology',motion:'Acquire',tier:2,employees:35,potential:16000,signal:'New sales leader appointed 30 days ago',source:'Illustrative leadership announcement',age:12,confidence:'Medium',persona:'Head of Sales',challenge:'Establish a reliable forecast and shared sales habits',outcome:'Improve forecast confidence and rep productivity',product:'Sales Cloud',color:'purple'},
-{id:6,name:'Bloom Wellness',initials:'BW',industry:'Healthcare',motion:'Expand',tier:2,employees:72,potential:22000,signal:'Customer enquiries up 28% quarter on quarter',source:'Illustrative service dashboard',age:7,confidence:'High',persona:'Customer Operations Lead',challenge:'Handle growing enquiry volume without losing service quality',outcome:'Improve response times with consistent case routing',product:'Service Cloud',color:'green'},
+{id:6,acv:46000,name:'Bloom Wellness',initials:'BW',industry:'Healthcare',motion:'Expand',tier:2,employees:72,potential:22000,signal:'Customer enquiries up 28% quarter on quarter',source:'Illustrative service dashboard',age:7,confidence:'High',persona:'Customer Operations Lead',challenge:'Handle growing enquiry volume without losing service quality',outcome:'Improve response times with consistent case routing',product:'Service Cloud',color:'green'},
 {id:7,name:'Atlas Studio',initials:'AS',industry:'Technology',motion:'Acquire',tier:3,employees:18,potential:8000,signal:'Recruiting its first sales operations hire',source:'Illustrative careers page',age:15,confidence:'Medium',persona:'Founder',challenge:'Replace scattered spreadsheets with a simple sales process',outcome:'Spend less time on administration and more on customers',product:'Sales Cloud',color:'blue'},
 {id:8,name:'Fieldwork Supply',initials:'FS',industry:'Retail',motion:'Acquire',tier:3,employees:24,potential:10000,signal:'Launched a wholesale channel',source:'Illustrative company announcement',age:10,confidence:'Medium',persona:'Commercial Manager',challenge:'Track wholesale relationships alongside direct customers',outcome:'Create a consistent follow-up process for wholesale buyers',product:'Sales Cloud',color:'orange'}];
 export const results=accounts.map((a,i)=>({account:a.id,contacted:[40,48,44,36,40,40,56,48][i],delivered:[38,46,42,35,38,39,53,46][i],opens:[22,28,23,20,20,22,25,24][i],replies:[9,11,8,7,7,8,6,6][i],meetings:[5,6,4,4,3,4,2,2][i],opps:[2,3,2,2,1,2,1,1][i],pipeline:[26000,42000,32000,18000,14000,24000,8000,10000][i]}));
@@ -93,4 +93,27 @@ export function sequenceTouches(a){
   }
   return {...t,title:priorityFor(a).retentionUrgent?['Start with adoption and value','Diagnose the adoption blocker','Connect to coordinate support','Understand who needs enablement','Agree an adoption action plan','Review progress and blockers','Offer a focused working session','Confirm ownership and review date','Agree future communication'][i]:t.title,content,template,execution,approach:approach.label,summary: a.tier===1?`${t.summary} Tailored to ${a.name}’s project.`:a.tier===3?`${t.summary} Reusable signal-segment template.`:t.summary};
  });
+}
+
+// Fictional contact cohorts grouped by sequence enrolment date, not outcome event date.
+export const performanceCohorts=results.flatMap(r=>['2026-08-01','2026-09-01','2026-10-01'].map((date,i)=>{
+ const row={account:r.account,date};
+ for(const k of ['contacted','delivered','opens','replies','meetings','opps'])row[k]=Math.floor(r[k]/3)+(i<r[k]%3?1:0);
+ const perOpp=Math.floor(r.pipeline/r.opps);row.pipeline=row.opps*perOpp+(i===0?r.pipeline-perOpp*r.opps:0);return row;
+}));
+export function filteredPerformance({start='',end='',industry='all',motion='all',account='all'}={}){
+ if(start&&end&&start>end)return [];
+ return accounts.filter(a=>(industry==='all'||a.industry===industry)&&(motion==='all'||a.motion===motion)&&(account==='all'||a.id===+account)).flatMap(a=>{
+  const cohorts=performanceCohorts.filter(r=>r.account===a.id&&(!start||r.date>=start)&&(!end||r.date<=end));
+  return cohorts.length?[{account:a.id,...aggregate(cohorts)}]:[];
+ });
+}
+export function testingSuggestion(rows){
+ const eligible=rows.filter(r=>r.contacted>0&&!priorityFor(accounts.find(a=>a.id===r.account)).retentionUrgent);
+ if(!eligible.length)return null;
+ const ranked=[...eligible].sort((a,b)=>b.opps/b.contacted-a.opps/a.contacted||b.meetings/b.contacted-a.meetings/a.contacted);
+ const leader=ranked[0],source=accounts.find(a=>a.id===leader.account);
+ const peers=ranked.filter(r=>{const a=accounts.find(a=>a.id===r.account);return a.id!==source.id&&a.tier===source.tier&&a.motion===source.motion;});
+ const targetRow=peers.at(-1)||leader,target=accounts.find(a=>a.id===targetRow.account);
+ return {leader,targetRow,source,target,comparable:peers.length>0,rate:100*leader.opps/leader.contacted,idea:source.tier===1?'Test an account-specific workflow offer against the current outcome question.':source.tier===3?'Test a short segment checklist against the current discovery question.':'Test a role-specific review offer against the current signal-led question.',why:`${source.name} generated ${leader.opps} opportunities from ${leader.contacted} contacts (${(100*leader.opps/leader.contacted).toFixed(1)}%), the highest opportunity rate among eligible sequences in this view. ${peers.length?'A same-tier, same-motion sequence provides a useful test context.':'There is no same-tier, same-motion comparison in this view; use the sequence as a starting hypothesis only.'} Observed differences do not establish which message caused the result.`};
 }
