@@ -71,3 +71,11 @@ Performance filters select fictional contact cohorts by sequence enrolment date.
 The AI-powered test-ideas panel is explicitly a local data-driven demonstration, not a live model. It ranks eligible sequences by opportunities per contact, prefers a same-tier/same-motion test context and excludes adoption-priority customers from expansion tests. Differences are hypotheses, not proof of message effectiveness. The action button creates an A/B plan with control and variant emails, randomisation guidance and evaluation measures; users can save it in local storage or download JSON. It does not launch a campaign, modify a sequence or send messages.
 
 The playbook masthead is centred above the content. The sidebar groups the Signal brand, Eliott’s name/title with the Salesforce logo, navigation and AI approach. The Salesforce SVG is served locally (`salesforce.svg`), sourced from https://github.com/gilbarbara/logos/blob/main/logos/salesforce.svg. Salesforce remains a trademark of its owner; the site is an independent interview demonstration.
+
+## Conversational agent demo
+
+Open **AI Agent** and ask “What is the next account I should contact?” The local agent ranks customer-value risk before growth, explains the account choice, proposes a strategy and distinguishes current ACV from hypothetical additional annual revenue. Ask “New business only” for acquisition or name an account. Revenue/strategy follow-ups retain the last account context.
+
+This is explicitly a deterministic, rule-based conversational demonstration, not a connected language model or general-purpose chatbot. It reads fictional local account data and makes no external AI requests. Live AI would require a separately hosted backend and securely managed model credentials, which GitHub Pages does not supply.
+
+**Execute demo plan** queues a reviewable plan in browser local storage: four adoption-review tasks for Bloom Wellness or nine 30-day outreach tasks for growth accounts. It does not contact customers or change a CRM. Repeated actions do not duplicate a plan. The action queue can be reviewed and cleared. Tests cover ranking, scope, context and planned task structure.
