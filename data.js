@@ -43,3 +43,5 @@ export const priorityEvidence={
 export function priorityScore(revenue,signal,timing){return Math.round((revenue*.4+signal*.4+timing*.2)*10)/10;}
 export function tierForScore(score){return score>=4.2?1:score>=2.5?2:3;}
 export function priorityFor(a){const e=priorityEvidence[a.id],revenue=a.potential>=30000?5:a.potential>=15000?3:1;const score=priorityScore(revenue,e.signalScore,e.timingScore);const retentionUrgent=a.motion==='Expand'&&(e.adoption==='Low'||e.risk==='Review now');return {...e,revenue,score,tier:tierForScore(score),retentionUrgent,accountPriority:retentionUrgent?'High · restore customer value':'Growth-led coverage'};}
+
+export const journeySteps=[{label:'Prioritise',description:'Potential & customer health',icon:'target'},{label:'Engage',description:'Personalised conversations',icon:'spark'},{label:'Learn',description:'Pipeline & improvement',icon:'growth'}];
