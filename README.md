@@ -43,3 +43,5 @@ Use **Interview mode** in the header for a three-screen presentation: Prioritise
 - All detailed framework, learning and response sections are collapsed initially to keep the dashboard easy to scan.
 
 `strategy.js` renders the new decision tools; account-specific priority evidence and tested score functions are in `data.js`. Existing account metrics remain fictional. Even a strong external trigger is not proof of intent; the examples explicitly distinguish plausible signals from illustrative validated needs.
+
+Low adoption is now an explicit customer-value priority, independent of the growth score and renewal date. The territory callout, account badges, priority dialog, sequence guidance and interview mode distinguish growth tier from adoption / retention action. Bloom Wellness demonstrates high account attention alongside T2 expansion; low adoption calls for diagnosis and enablement, not an automatic upsell or a claim of churn.

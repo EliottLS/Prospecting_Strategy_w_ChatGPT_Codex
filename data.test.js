@@ -26,3 +26,13 @@ test('weighted priorities reconcile with every displayed tier and keep retention
  for(const a of accounts){const p=priorityFor(a);assert.equal(p.tier,a.tier);assert.ok(p.need&&p.next&&p.promote&&p.demote);}
  const bloom=priorityFor(accounts.find(a=>a.id===6));assert.equal(bloom.tier,2);assert.equal(bloom.risk,'Review now');
 });
+
+test('low adoption creates a service priority independently of growth score and renewal timing',async()=>{
+ const {priorityFor,priorityEvidence}=await import('./data.js');
+ const a=accounts.find(a=>a.id===6),original=priorityEvidence[6];
+ try{
+  priorityEvidence[6]={...original,risk:'Monitor',renewalDays:365,signalScore:1,timingScore:1};
+  const p=priorityFor(a);assert.equal(p.retentionUrgent,true);assert.equal(p.tier,3);assert.equal(p.accountPriority,'High · restore customer value');
+ }finally{priorityEvidence[6]=original;}
+ assert.equal(priorityFor(accounts[0]).retentionUrgent,false);
+});
