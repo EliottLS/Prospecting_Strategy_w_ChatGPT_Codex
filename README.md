@@ -14,7 +14,7 @@ Open port 3000 in your development environment. Set `PORT` to change the listeni
 
 ## Interview walkthrough
 
-1. Explain the tiering model and 50/35/15 effort allocation in Territory plan. Potential is a discovery hypothesis, not a forecast.
+1. Explain the tiering model and 50/35/15 effort allocation in Account tiering, then open Book of business to select an account. Potential is a discovery hypothesis, not a forecast.
 2. Select Evergreen Home to demonstrate an expansion sequence based on support hiring. Select Orbit Analytics for acquisition following funding and sales hiring.
 3. Walk through the nine clickable touches over 30 days, stakeholder strategy and first email. Explain how replies, opt-outs and existing customer adoption change the plan.
 4. Use Performance filters to discuss conversion and qualified pipeline. Open rate is only directional. Export a filtered CSV if useful.
@@ -55,3 +55,9 @@ Low adoption is now an explicit customer-value priority, independent of the grow
 The touch dialog shows the execution mode and, for T3, the reusable template behind the example preview. Low-adoption accounts use customer-value drafts and require account-team review before any expansion outreach. All tiers retain the planned nine touches across 30 days.
 
 The growth framework has two groups: existing customers (internal and external evidence combined) and new business (public signals plus relevant first-party discovery). Bullet lists show T1 Strong, T2 Moderate and T3 Weak signals; final tiers still depend on revenue potential and timing.
+
+## Territory navigation
+
+**Account tiering** explains growth tiers, the 40/40/20 scoring model, signal strength, effort allocation, reassessment and separate adoption/retention priorities. The two-group signal framework is expanded by default on this page.
+
+**Book of business** contains the account overview, searchable/filterable account table, growth-tier explanations, adoption-priority flags and sequence links. Search and filters persist while switching between pages. The interview presentation continues to use Prioritise → Engage → Learn.
