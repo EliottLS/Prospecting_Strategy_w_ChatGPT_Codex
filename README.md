@@ -79,3 +79,5 @@ Open **AI Agent** and ask “What is the next account I should contact?” The l
 This is explicitly a deterministic, rule-based conversational demonstration, not a connected language model or general-purpose chatbot. It reads fictional local account data and makes no external AI requests. Live AI would require a separately hosted backend and securely managed model credentials, which GitHub Pages does not supply.
 
 **Execute demo plan** queues a reviewable plan in browser local storage: four adoption-review tasks for Bloom Wellness or nine 30-day outreach tasks for growth accounts. It does not contact customers or change a CRM. Repeated actions do not duplicate a plan. The action queue can be reviewed and cleared. Tests cover ranking, scope, context and planned task structure.
+
+Agent replies use a 3.4-second demo processing animation with three high-level progress states, animated dots and a stop-response control. The interface prevents duplicate submissions while pending, handles navigation away and respects reduced-motion preferences. The animation is explicitly labelled as a local demo, not live AI reasoning.

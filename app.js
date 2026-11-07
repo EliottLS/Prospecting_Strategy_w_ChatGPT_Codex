@@ -1,6 +1,6 @@
-import {agentPage,bindAgent} from './agent.js?v=12';
-import {whyCard,framework,adaptivePanel,branchContent,learningPanel,priorityDialog,scoreText,interviewSlide,readStory,retentionBanner,approachCard} from './strategy.js?v=12';
-import {accounts,results,aggregate,money,sequenceTouches,priorityFor,journeySteps,filteredPerformance,testingSuggestion} from './data.js?v=12';
+import {agentPage,bindAgent} from './agent.js?v=13';
+import {whyCard,framework,adaptivePanel,branchContent,learningPanel,priorityDialog,scoreText,interviewSlide,readStory,retentionBanner,approachCard} from './strategy.js?v=13';
+import {accounts,results,aggregate,money,sequenceTouches,priorityFor,journeySteps,filteredPerformance,testingSuggestion} from './data.js?v=13';
 let tab='tiering',selected=1,search='',tier='all',motion='all',industry='all',metricAccount='all',sequenceType='all',dateStart='2026-08-01',dateEnd='2026-10-31';
 const icons={email:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/>',phone:'<path d="M8 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-4l-5-2-2 2a15 15 0 0 1-6-6l2-2-2-5Z"/>',linkedin:'<rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" stroke="none"/><path d="M7 10v7m0-10v.1M11 17v-7m0 3c0-4 6-4 6 0v4" stroke="white" stroke-width="2"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',growth:'<path d="m3 17 6-6 4 4 8-11M14 4h7v7"/>',spark:'<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z"/>',people:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"/>',check:'<path d="m5 12 4 4L20 5"/><path d="M20 12v7H3V3h12"/>'};
 const icon=(name)=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]||icons.spark}</svg>`;
