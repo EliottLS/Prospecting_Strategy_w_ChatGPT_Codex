@@ -16,7 +16,7 @@ Open port 3000 in your development environment. Set `PORT` to change the listeni
 
 1. Explain the tiering model and 50/35/15 effort allocation in Territory plan. Potential is a discovery hypothesis, not a forecast.
 2. Select Evergreen Home to demonstrate an expansion sequence based on support hiring. Select Orbit Analytics for acquisition following funding and sales hiring.
-3. Walk through the six touches, stakeholder strategy and first email. Explain how replies, opt-outs and existing customer adoption change the plan.
+3. Walk through the nine clickable touches over 30 days, stakeholder strategy and first email. Explain how replies, opt-outs and existing customer adoption change the plan.
 4. Use Performance filters to discuss conversion and qualified pipeline. Open rate is only directional. Export a filtered CSV if useful.
 5. Open My approach to explain what you would stop, test and delegate to AI. Describe personal experience separately; the sample results do not prove what has worked for you.
 
