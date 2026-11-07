@@ -18,3 +18,11 @@ test('every account gets nine distinct drafts with the exact 30-day channel mix'
   assert.ok(touches.filter(t=>t.channel==='LinkedIn message').every(t=>t.guidance.includes('pending')));
  }
 });
+
+test('weighted priorities reconcile with every displayed tier and keep retention separate',async()=>{
+ const {priorityFor,priorityScore,tierForScore}=await import('./data.js');
+ assert.equal(priorityScore(5,1,1),2.6);
+ assert.equal(tierForScore(4.2),1);assert.equal(tierForScore(4.1),2);assert.equal(tierForScore(2.5),2);assert.equal(tierForScore(2.4),3);
+ for(const a of accounts){const p=priorityFor(a);assert.equal(p.tier,a.tier);assert.ok(p.need&&p.next&&p.promote&&p.demote);}
+ const bloom=priorityFor(accounts.find(a=>a.id===6));assert.equal(bloom.tier,2);assert.equal(bloom.risk,'Review now');
+});

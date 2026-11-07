@@ -30,3 +30,16 @@ The app uses curated AI-assisted examples, not live AI generation. Research veri
 - `server.js`: dependency-free static development server.
 
 No outreach is sent, and no CRM or external data source is connected.
+
+## Decision tools and interview mode
+
+Use **Interview mode** in the header for a three-screen presentation: Prioritise → Engage → Learn. The selected example account stays consistent across all screens. The Engage screen opens all nine touch drafts.
+
+- **Tier badges** open account-specific evidence, promotion/downgrade criteria, a separate renewal-risk assessment and a scoring sandbox.
+- Proposed score: 40% revenue potential, 40% signal strength, 20% timing; T1 ≥4.2, T2 ≥2.5, T3 below 2.5. Revenue bands and thresholds are illustrative, not Salesforce policy. The sandbox does not change the account book.
+- **Why this account, why now** connects signals to a challenge, business outcome, stakeholder and next action.
+- **Customer response paths** explain what happens on a reply, objection, silence or opt-out. These are simulations; no outreach or CRM updates occur.
+- **Performance → What worked / what didn’t** contains proposed lessons and measurement plans. Add a verified personal example in the expandable editor; it is saved only in that browser's local storage and can be cleared. It is also shown in Interview mode, separately from fictional metrics.
+- All detailed framework, learning and response sections are collapsed initially to keep the dashboard easy to scan.
+
+`strategy.js` renders the new decision tools; account-specific priority evidence and tested score functions are in `data.js`. Existing account metrics remain fictional. Even a strong external trigger is not proof of intent; the examples explicitly distinguish plausible signals from illustrative validated needs.
