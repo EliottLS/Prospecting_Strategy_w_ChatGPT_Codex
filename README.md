@@ -45,3 +45,13 @@ Use **Interview mode** in the header for a three-screen presentation: Prioritise
 `strategy.js` renders the new decision tools; account-specific priority evidence and tested score functions are in `data.js`. Existing account metrics remain fictional. Even a strong external trigger is not proof of intent; the examples explicitly distinguish plausible signals from illustrative validated needs.
 
 Low adoption is now an explicit customer-value priority, independent of the growth score and renewal date. The territory callout, account badges, priority dialog, sequence guidance and interview mode distinguish growth tier from adoption / retention action. Bloom Wellness demonstrates high account attention alongside T2 expansion; low adoption calls for diagnosis and enablement, not an automatic upsell or a claim of churn.
+
+## Outreach effort by tier
+
+- **T1:** highly personalised drafts, account-specific business hypotheses, stakeholder mapping and individual message review.
+- **T2:** reusable playbooks with verified signal and role edits; discovery establishes need and timing.
+- **T3:** signal-segment templates with `company`, `first_name` and `sender_name` merge fields. Proposed automation schedules eligible emails and creates tasks; calls and LinkedIn actions remain human-led. Replies or opt-outs stop the cadence. This demo does not connect to an automation system or send outreach.
+
+The touch dialog shows the execution mode and, for T3, the reusable template behind the example preview. Low-adoption accounts use customer-value drafts and require account-team review before any expansion outreach. All tiers retain the planned nine touches across 30 days.
+
+The growth framework has two groups: existing customers (internal and external evidence combined) and new business (public signals plus relevant first-party discovery). Bullet lists show T1 Strong, T2 Moderate and T3 Weak signals; final tiers still depend on revenue potential and timing.

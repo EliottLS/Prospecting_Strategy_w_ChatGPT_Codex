@@ -36,3 +36,11 @@ test('low adoption creates a service priority independently of growth score and 
  }finally{priorityEvidence[6]=original;}
  assert.equal(priorityFor(accounts[0]).retentionUrgent,false);
 });
+
+test('tier changes alter actual drafts and execution, while adoption overrides expansion',async()=>{
+ const {sequenceTouches,sequenceApproach}=await import('./data.js');
+ const tier1=sequenceTouches(accounts[1]);assert.ok(tier1[0].content.includes('eight planned AE hires'));assert.ok(tier1[4].content.includes('ramp-readiness map'));assert.ok(tier1.every(t=>!t.template&&t.execution.startsWith('Individually')));
+ const tier3=sequenceTouches(accounts[6]);assert.equal(tier3.filter(t=>t.execution==='Scheduled email · proposed').length,3);assert.ok(tier3.every(t=>t.template.includes('{{company}}')));assert.ok(tier3.filter(t=>t.channel.startsWith('LinkedIn')).every(t=>t.execution==='Queued manual LinkedIn task'));
+ assert.ok(!tier3[0].content.includes(accounts[6].signal));assert.ok(sequenceTouches({...accounts[6],tier:2})[0].content.includes(accounts[6].signal));
+ const lowAdoption=accounts[5];assert.match(sequenceApproach(lowAdoption).label,/Adoption first/);assert.ok(sequenceTouches(lowAdoption).every(t=>t.execution==='Account-team review required'&&t.content.includes('not a proposal to buy')));
+});
